@@ -11,3 +11,4 @@
 1.  css작성전에 참고: reset css나 nomalize css로 css설정값들을 초기화해두고 시작
 
 2.  font 적용시: google font 핵유용함. import한 다음, fontfamily로 적용.
+
