@@ -26,39 +26,77 @@
   min-height: 200vh;
 }
 
-.chat__write {
+@keyframes float {
+  0% {
+    box-shadow: 0 13px 27px -10px rgba(50, 50, 93, 0.25),
+      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.02);
+  }
+  50% {
+    box-shadow: 0 13px 27px -80px rgba(50, 50, 93, 0.25),
+      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.02);
+  }
+  100% {
+    box-shadow: 0 13px 27px -10px rgba(50, 50, 93, 0.25),
+      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.02);
+  }
+}
+
+.chat__write--container {
   position: fixed;
-  bottom: 50px;
-  width: 80%;
+  bottom: 0px;
+  width: 100%;
   margin: 0 auto;
   left: 0;
   right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fcfcfc;
-  padding: 0px 20px;
-  border-radius: 40px;
-  box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
-    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.02);
+}
+
+.chat__write {
+  margin: 0 auto;
+  bottom: 0px;
+  width: 100%;
+  border-radius: 0px;
+  padding: 10px 60px;
+  border: none;
+  font-size: 14px;
+  transition: width 0.5s ease-in-out, border-radius 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
 }
 
 .chat__write i {
   font-size: 22px;
 }
 
-.chat__write-column:nth-child(2) {
-  width: 80%;
+.chat__icon-left {
+  position: absolute;
+  left: 10px;
 }
 
-.chat__write-column input {
-  padding: 20px 10px;
-  width: 100%;
-  border: none;
+.chat__icon-right {
+  position: absolute;
+  right: 10px;
 }
 
-.chat__write-column input:focus {
+.chat__write:focus {
   outline: none;
+  width: 80%;
+
+  transform: translateY(-100px);
+  border-radius: 40px;
+  box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.02);
+  animation: float 3s ease-in-out infinite forwards;
+}
+
+.chat__icon {
+  font-size: 18px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.chat__write:focus ~ .chat__icon {
+  opacity: 0;
 }
 
 .chat-screen .chat__messages {
@@ -137,4 +175,34 @@
 .sent-message .message__bubble {
   border-bottom-right-radius: 0px;
   background-color: #feeb00;
+}
+
+@keyframes incomingAnim {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.incoming-message {
+  animation: incomingAnim 0.3s linear forwards;
+}
+
+@keyframes sentAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.sent-message {
+  animation: sentAnimation 0.3s ease-out forwards;
 }
